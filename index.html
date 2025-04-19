@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Malá násobilka</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+        <style>
+            html {
+                width: fit-content;
+                margin: auto;
+            }
+
+            html, button {
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 1em 0;
+            }
+
+            #excersise {
+                display: none;
+            }
+
+            nav {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin: 2em 0;
+            }
+
+            nav button {
+                width: fit-content;
+                padding: 1em 2em;
+                margin: 1em;
+            }
+
+            #example {
+                display: flex;
+                justify-content: center;
+                margin: 5em 0;
+            }
+
+            #example > * {
+                text-align: center;
+                width: 2em;
+                font-weight: bold;
+                font-size: x-large;
+            }
+        </style>
+        <script>
+            let b;
+            let a;
+            let resultVisible;
+
+            function practice(n) {
+                document.getElementById("menu").style.display = "none";
+
+                a = null;
+                b = n;
+                resultVisible = false;
+                next();
+
+                document.getElementById("excersise-title").textContent = "Násobilka " + n;
+
+                document.getElementById("excersise").style.display = "block";
+            }
+
+            function next() {
+                if (!resultVisible) {
+                    while (true) {
+                        let r = Math.round(Math.random() * 10);
+                        if (r != a) {
+                            a = r;
+                            break;
+                        }
+                    }
+                }
+
+                document.getElementById("a").textContent = a;
+                document.getElementById("b").textContent = b;
+                document.getElementById("result").textContent = resultVisible ? a * b : " ";
+
+                resultVisible = !resultVisible;
+            }
+            
+            function showMenu() {
+                document.getElementById("excersise").style.display = "none";
+                document.getElementById("menu").style.display = "block";
+            }
+        </script>
+    </head>
+<body>
+
+    <div id="menu">
+
+        <h1>Malá násobilka</h1>
+
+        <nav>
+            <button onclick="practice(2)">2</button>
+            <button onclick="practice(3)">3</button>
+            <button onclick="practice(4)">4</button>
+            <button onclick="practice(5)">5</button>
+            <button onclick="practice(6)">6</button>
+            <button onclick="practice(7)">7</button>
+            <button onclick="practice(8)">8</button>
+            <button onclick="practice(9)">9</button>
+        </nav>
+
+    </div>
+
+    <div id="excersise">
+
+        <h1 id="excersise-title">Násobilka X</h1>
+
+        <div id="example">
+            <div id="a">A</div>
+            <div>&times;</div>
+            <div id="b">B</div>
+            <div>=</div>
+            <div id="result">C</div>
+        </div>
+
+        <nav>
+            <button onclick="showMenu()">Menu</button>
+            <button onclick="next()">Další</button>
+        </nav>
+
+    </div>
+
+</body>
+</html>
